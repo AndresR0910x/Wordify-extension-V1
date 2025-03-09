@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+          <!-- Título y línea -->
+          <h2 class="text-4xl font-semibold text-center mb-4">Wordify</h2>
+          <h3 class="text-xl text-center mb-6">Login</h3>
+          <hr class="border-t border-gray-300 mb-6"> <!-- Línea gris que separa los inputs -->
+      
+          <!-- Formulario de login -->
+          <form id="loginForm">
+            <!-- Input de nombre de usuario -->
+            <div class="mb-4">
+              <label for="username" class="block text-sm font-medium text-gray-700">Nombre de usuario</label>
+              <input type="text" id="username" name="username" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
+            </div>
+            
+            <!-- Input de contraseña -->
+            <div class="mb-6">
+              <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+              <input type="password" id="password" name="password" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
+            </div>
+            
+            <!-- Botón de login -->
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Iniciar sesión</button>
+          </form>
+      
+          <!-- Enlace para registro -->
+          <p class="text-center mt-4 text-sm text-gray-600">
+            ¿No tienes una cuenta? <a href="register.html" class="text-blue-500 hover:underline">Regístrate</a>
+          </p>
+        </div>
+    </div> 
+
+    <!-- Enlace al archivo JS del login -->
+    <script src="../js/login.js"></script>
+</body>
+</html>

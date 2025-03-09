@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Wordify",
+    "description": "Aprende vocabulario en inglés con facilidad",
+    "version": "1.0",
+    "action": {
+      "default_popup": "html/login.html"  
+    },
+    "permissions": [
+      "storage"  
+    ],
+    "background": {
+      "service_worker": "background.js"  
+    },
+    "host_permissions": [
+      "http://*/*", "https://*/*"  
+    ]
+  }
+  
