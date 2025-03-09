@@ -1,0 +1,26 @@
+{
+  "name": "proyecto-wordify",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndresR0910x/Wordify-extension-V1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndresR0910x/Wordify-extension-V1/issues"
+  },
+  "homepage": "https://github.com/AndresR0910x/Wordify-extension-V1#readme",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.12",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.12"
+  }
+}
