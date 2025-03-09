@@ -34,3 +34,9 @@ def crear_palabra(palabra: PalabraCreate, db: Session = Depends(get_db)):
     db.refresh(nueva_palabra)
 
     return nueva_palabra
+
+# Ruta para obtener todas las palabras de un usuario
+@router.get("/palabras/{user_id}", response_model=list[PalabraSchema])
+def obtener_palabras(user_id: int, db: Session = Depends(get_db)):
+    palabras = db.query(Palabra).filter(Palabra.user_id == user_id).all()
+    return palabras
