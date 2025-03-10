@@ -1,42 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Wordify - Crear cuenta</title>
+  
+  <!-- TailwindCSS CDN (opcional: puedes usar tu propia build si prefieres) -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div class="flex justify-center items-center min-h-screen bg-gray-100">
-        <div class="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 class="text-2xl font-semibold text-center mb-6">Crear cuenta</h2>
-          <form action="/register" method="POST">
-            <div class="mb-4">
-              <label for="username" class="block text-sm font-medium text-gray-700">Nombre de usuario</label>
-              <input type="text" id="username" name="username" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
-            </div>
-            <div class="mb-4">
-              <label for="email" class="block text-sm font-medium text-gray-700">Correo electrónico</label>
-              <input type="email" id="email" name="email" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
-            </div>
-            <div class="mb-6">
-              <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-              <input type="password" id="password" name="password" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
-            </div>
-            <div class="mb-6">
-              <label for="confirm_password" class="block text-sm font-medium text-gray-700">Confirmar contraseña</label>
-              <input type="password" id="confirm_password" name="confirm_password" class="w-full p-2 mt-1 border border-gray-300 rounded-md" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">Registrarse</button>
-          </form>
-      
-          <!-- Enlace para redirigir a la página de login -->
-          <p class="text-center mt-4 text-sm text-gray-600">
-            ¿Ya tienes una cuenta? <a href="login.html" class="text-blue-500 hover:underline">Login</a>
-          </p>
-        </div>
-      </div>
+<body class="bg-gray-100 font-sans antialiased">
 
-      <script src="../js/register.js"></script>
+  <main class="flex items-center justify-center min-h-screen">
+    <section class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
       
+      <!-- Encabezado -->
+      <header class="mb-6 text-center">
+        <h1 class="text-3xl font-bold text-gray-800">Wordify</h1>
+        <p class="text-lg text-gray-500 mt-2">Crear cuenta</p>
+      </header>
+
+      <!-- Formulario de registro -->
+      <form action="/register" method="POST" id="registerForm" class="space-y-5">
+
+        <!-- Nombre de usuario -->
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nombre de usuario</label>
+          <input 
+            type="text" 
+            id="username" 
+            name="username" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+            placeholder="Tu nombre de usuario"
+            required 
+          />
+        </div>
+
+        <!-- Correo electrónico -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+            placeholder="tuemail@ejemplo.com"
+            required 
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+            placeholder="********"
+            required 
+          />
+        </div>
+
+        <!-- Confirmar contraseña -->
+        <div>
+          <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-1">Confirmar contraseña</label>
+          <input 
+            type="password" 
+            id="confirm_password" 
+            name="confirm_password" 
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none" 
+            placeholder="********"
+            required 
+          />
+        </div>
+
+        <!-- Botón de registro -->
+        <button 
+          type="submit" 
+          class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors duration-300"
+        >
+          Registrarse
+        </button>
+      </form>
+
+      <!-- Enlace a login -->
+      <p class="mt-6 text-center text-sm text-gray-600">
+        ¿Ya tienes una cuenta?
+        <a href="login.html" class="text-blue-600 hover:underline">Inicia sesión</a>
+      </p>
+
+    </section>
+  </main>
+
+  <!-- Enlace al archivo JS -->
+  <script src="../js/register.js"></script>
 </body>
 </html>
