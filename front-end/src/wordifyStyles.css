@@ -1,6 +1,7 @@
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9; /* Fondo más suave */
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,71 +11,109 @@ body {
 }
 
 .container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
     text-align: center;
-    width: 300px;
+    width: 320px; /* Un poco más ancho */
 }
 
 h1 {
-    color: #333;
+    color: #4CAF50; /* Verde moderno */
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
+/* Sección de palabras guardadas */
 .saved-words {
     margin: 20px 0;
 }
 
 .saved-words h2 {
     color: #555;
+    font-size: 18px;
+    margin-bottom: 15px;
 }
 
-.navigation-buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.nav-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.nav-button:hover {
-    background-color: #0056b3;
-}
-
+/* Lista de palabras */
 .saved-words ul {
     list-style-type: none;
     padding: 0;
-    margin: 0 10px;
+    margin: 0;
 }
 
 .saved-words li {
     background-color: #f9f9f9;
     margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 12px;
+    border-radius: 8px; /* Bordes más redondeados */
     color: #333;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease; /* Efecto hover suave */
 }
 
-button.view-words {
-    background-color: #007bff;
+.saved-words li:hover {
+    background-color: #e0f7fa; /* Color hover suave */
+}
+
+/* Botones de navegación */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.nav-button {
+    background-color: #4CAF50; /* Verde moderno */
     color: #fff;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 8px; /* Bordes más redondeados */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Efecto hover suave */
+}
+
+.nav-button:hover {
+    background-color: #45a049; /* Verde más oscuro al hacer hover */
+}
+
+/* Botón de ver palabras */
+button.view-words {
+    background-color: #4CAF50; /* Verde moderno */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px; /* Bordes más redondeados */
     cursor: pointer;
     font-size: 16px;
     width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease; /* Efecto hover suave */
 }
 
 button.view-words:hover {
-    background-color: #0056b3;
+    background-color: #45a049; /* Verde más oscuro al hacer hover */
+}
+
+/* Botón de cerrar sesión */
+.logout-button {
+    background-color: #ff4444; /* Rojo para acciones importantes */
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px; /* Bordes más redondeados */
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 0.3s ease; /* Efecto hover suave */
+}
+
+.logout-button:hover {
+    background-color: #cc0000; /* Rojo más oscuro al hacer hover */
 }

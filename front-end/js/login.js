@@ -1,4 +1,3 @@
-console.log("Funcionandoaaaaa")
 document.addEventListener("DOMContentLoaded", function () {
     // Verificar si el usuario ya está autenticado
     chrome.storage.local.get(["access_token"], function (data) {
@@ -10,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Manejar el envío del formulario de login
     const form = document.querySelector("form");
-    form.addEventListener("submit", function(event) {
+    form.addEventListener("submit", function (event) {
         event.preventDefault(); // Evita que la página recargue
 
         const username = document.querySelector("#username").value;
@@ -27,8 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 chrome.storage.local.set({ 
                     access_token: data.access_token,
                     user_id: data.user_id
-                }, function() {
+                }, function () {
                     console.log("Usuario autenticado. Redirigiendo...");
+
+                    // Enviar un mensaje a content.js para notificar que el usuario está autenticado
+                    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                        chrome.tabs.sendMessage(tabs[0].id, { 
+                            action: "login", 
+                            access_token: data.access_token, 
+                            user_id: data.user_id 
+                        });
+                    });
+
                     window.location.href = "wordify.html"; // Redirigir a la vista principal
                 });
             } else {

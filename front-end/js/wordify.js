@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!userId) {
             console.error("No se encontró el ID del usuario logeado.");
+            window.location.href = "../html/login.html"; // Redirigir al login si no hay sesión activa
             return;
         }
 
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
             let palabras = await response.json();
 
-            if (palabras.length === 0) {
+            if (!palabras || palabras.length === 0) {
                 console.log("No hay palabras guardadas.");
                 return;
             }
@@ -56,5 +57,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         } catch (error) {
             console.error("Error al cargar las palabras:", error);
         }
+    });
+
+    // Función para cerrar sesión
+    document.querySelector(".logout-button").addEventListener("click", () => {
+        chrome.storage.local.get(["access_token", "user_id"], function (data) {
+            console.log("Antes de eliminar:", data);
+
+            chrome.storage.local.clear(function () {
+                console.log("Sesión cerrada. Datos eliminados.");
+
+                // Enviar un mensaje a content.js para notificar que el usuario ha cerrado sesión
+                chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+                    chrome.tabs.sendMessage(tabs[0].id, { action: "logout" });
+                });
+
+                // Redirigir al login
+                window.location.href = "../html/login.html";
+            });
+        });
     });
 });
