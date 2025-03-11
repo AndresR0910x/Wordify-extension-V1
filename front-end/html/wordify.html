@@ -4,24 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORDIFY</title>
-    <link rel="stylesheet" href="../src/wordifyStyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        .fixed-width {
+            width: 200px; /* Ajusta este valor según tus necesidades */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <h1>WORDIFY</h1>
-        <div class="saved-words">
-            <h2>Palabras guardadas</h2>
-            <div class="navigation-buttons">
-                <button class="nav-button left">←</button>
-                <ul>
-                    <li><strong></strong> → </li>
+<body class="bg-gray-100 font-sans antialiased flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-md text-center">
+        
+        <div class="bg-blue-500 text-white p-4 rounded-lg shadow-md">
+            <h1 class="text-2xl font-bold">WORDIFY</h1>
+        </div>
+
+        <div class="mt-6">
+            <div class="flex justify-between items-center border-b border-gray-300 pb-2">
+                <h2 class="text-xl font-semibold text-gray-700">Palabras guardadas</h2>
+                <span class="text-gray-500 text-lg ml-2">📖</span> 
+            </div>
+
+            <hr class="border-gray-300 my-2">
+
+            <div class="flex items-center justify-center mt-4">
+                <button class="nav-button left bg-gray-200 text-gray-700 px-3 py-2 rounded-l-md hover:bg-gray-300 transition">←</button>
+                <ul id="wordsList" class="mx-4 text-base text-gray-700 min-w-[150px] fixed-width">
+                    <!-- Aquí se mostrarán las palabras dinámicamente -->
                 </ul>
-                <button class="nav-button right">→</button>
+                <button class="nav-button right bg-gray-200 text-gray-700 px-3 py-2 rounded-r-md hover:bg-gray-300 transition">→</button>
             </div>
         </div>
-        <!-- Nuevo botón para cerrar sesión -->
-        <button class="logout-button">Cerrar sesión</button>
+
+        <button class="mt-6 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition logout-button">
+            Cerrar sesión
+        </button>
+
     </div>
+
     <script src="../js/wordify.js"></script>
 </body>
 </html>

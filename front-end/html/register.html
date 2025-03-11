@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Wordify - Crear cuenta</title>
-  
-  <!-- TailwindCSS CDN (opcional: puedes usar tu propia build si prefieres) -->
-  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
 </head>
 <body class="bg-gray-100 font-sans antialiased">
 
@@ -16,14 +14,16 @@
       
       <!-- Encabezado -->
       <header class="mb-6 text-center">
-        <h1 class="text-3xl font-bold text-gray-800">Wordify</h1>
+        <h1 class="text-4xl font-bold text-gray-800">Wordify</h1>
         <p class="text-lg text-gray-500 mt-2">Crear cuenta</p>
       </header>
-
+      
+      <!-- Línea divisoria -->
+      <hr class="border-gray-300 mb-6" />
+      
       <!-- Formulario de registro -->
       <form action="/register" method="POST" id="registerForm" class="space-y-5">
 
-        <!-- Nombre de usuario -->
         <div>
           <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Nombre de usuario</label>
           <input 
@@ -36,7 +36,6 @@
           />
         </div>
 
-        <!-- Correo electrónico -->
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
           <input 
@@ -49,7 +48,6 @@
           />
         </div>
 
-        <!-- Contraseña -->
         <div>
           <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
           <input 
@@ -62,7 +60,6 @@
           />
         </div>
 
-        <!-- Confirmar contraseña -->
         <div>
           <label for="confirm_password" class="block text-sm font-medium text-gray-700 mb-1">Confirmar contraseña</label>
           <input 
@@ -75,7 +72,6 @@
           />
         </div>
 
-        <!-- Botón de registro -->
         <button 
           type="submit" 
           class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors duration-300"
@@ -84,16 +80,13 @@
         </button>
       </form>
 
-      <!-- Enlace a login -->
       <p class="mt-6 text-center text-sm text-gray-600">
         ¿Ya tienes una cuenta?
         <a href="login.html" class="text-blue-600 hover:underline">Inicia sesión</a>
       </p>
-
     </section>
   </main>
 
-  <!-- Enlace al archivo JS -->
   <script src="../js/register.js"></script>
 </body>
 </html>

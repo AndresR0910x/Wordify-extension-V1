@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (!userId) {
             console.error("No se encontró el ID del usuario logeado.");
-            window.location.href = "../html/login.html"; // Redirigir al login si no hay sesión activa
+            window.location.href = "../html/login.html";
             return;
         }
 
@@ -22,57 +22,52 @@ document.addEventListener("DOMContentLoaded", async () => {
                 return;
             }
 
-            // Asignar numeración correcta desde la primera palabra hasta la última
             palabras = palabras.map((palabra, index) => ({
                 ...palabra,
-                numero: index + 1 // Asigna 1, 2, 3... en orden
+                numero: index + 1
             }));
 
-            let index = palabras.length - 1; // Iniciar en la última palabra
-            const wordsList = document.querySelector(".saved-words ul");
+            let index = palabras.length - 1;
+            const wordsList = document.getElementById("wordsList");
             const leftButton = document.querySelector(".nav-button.left");
             const rightButton = document.querySelector(".nav-button.right");
 
             function actualizarPalabra() {
-                wordsList.innerHTML = ""; // Limpiar lista
-                const palabra = palabras[index]; // Obtener palabra actual
+                wordsList.innerHTML = "";
+                const palabra = palabras[index];
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `<strong>${palabra.numero}.</strong> ${palabra.palabra_original} → ${palabra.palabra_traducida}`;
+                listItem.classList.add("text-sm"); // Reducir tamaño de fuente aún más si es necesario
                 wordsList.appendChild(listItem);
             }
 
-            // Navegación infinita
             leftButton.addEventListener("click", () => {
-                index = (index - 1 + palabras.length) % palabras.length; // Retrocede en bucle
+                index = (index - 1 + palabras.length) % palabras.length;
                 actualizarPalabra();
             });
 
             rightButton.addEventListener("click", () => {
-                index = (index + 1) % palabras.length; // Avanza en bucle
+                index = (index + 1) % palabras.length;
                 actualizarPalabra();
             });
 
-            actualizarPalabra(); // Mostrar la última palabra agregada al cargar
+            actualizarPalabra();
 
         } catch (error) {
             console.error("Error al cargar las palabras:", error);
         }
     });
 
-    // Función para cerrar sesión
     document.querySelector(".logout-button").addEventListener("click", () => {
         chrome.storage.local.get(["access_token", "user_id"], function (data) {
             console.log("Antes de eliminar:", data);
 
             chrome.storage.local.clear(function () {
                 console.log("Sesión cerrada. Datos eliminados.");
-
-                // Enviar un mensaje a content.js para notificar que el usuario ha cerrado sesión
                 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, { action: "logout" });
                 });
 
-                // Redirigir al login
                 window.location.href = "../html/login.html";
             });
         });

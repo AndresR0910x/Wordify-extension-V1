@@ -10,29 +10,29 @@ function checkAuthentication() {
             isAuthenticated = true;
             userId = data.user_id;
             accessToken = data.access_token;
-            console.log("Usuario autenticado, activando subrayado...");
+            console.log("✅ Usuario autenticado, activando subrayado...");
         } else {
             isAuthenticated = false;
             userId = null;
             accessToken = null;
-            console.log("Usuario no autenticado, limpiando la interfaz...");
+            console.log("❌ Usuario no autenticado, limpiando la interfaz...");
             removeButton();
         }
     });
 }
 
-// Verificar el estado de autenticación al cargar el script
+// Verificar autenticación al cargar el script
 checkAuthentication();
 
 // Escuchar mensajes desde otros scripts (login.js y wordify.js)
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     if (request.action === "login") {
-        console.log("Usuario ha iniciado sesión. Actualizando estado...");
+        console.log("✅ Usuario ha iniciado sesión. Actualizando estado...");
         isAuthenticated = true;
         userId = request.user_id;
         accessToken = request.access_token;
     } else if (request.action === "logout") {
-        console.log("Usuario ha cerrado sesión. Actualizando estado...");
+        console.log("🔴 Usuario ha cerrado sesión. Limpiando...");
         isAuthenticated = false;
         userId = null;
         accessToken = null;
@@ -54,7 +54,10 @@ function underlineSelectedWord(userId, token) {
     const selection = window.getSelection();
     const selectedText = selection.toString().trim();
 
-    if (selectedText.length > 0) {
+    // Verificar si la selección es una sola palabra (sin espacios)
+    const isSingleWord = selectedText.split(/\s+/).length === 1; // Verifica si no hay espacios
+
+    if (selectedText.length > 0 && isSingleWord) {
         if (!button) {
             button = document.createElement("button");
             button.innerText = "Recordar";
@@ -71,31 +74,29 @@ function underlineSelectedWord(userId, token) {
             document.body.appendChild(button);
         }
 
-        const range = selection.getRangeAt(0);
-        const rect = range.getBoundingClientRect();
-        button.style.left = `${rect.left + window.scrollX}px`;
-        button.style.top = `${rect.top + window.scrollY - 30}px`;
+        const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+        if (range) {
+            const rect = range.getBoundingClientRect();
+            button.style.left = `${rect.left + window.scrollX}px`;
+            button.style.top = `${rect.top + window.scrollY - 30}px`;
+        }
 
         // Evento cuando se hace clic en "Recordar"
         button.onclick = function () {
-            const currentSelection = window.getSelection().toString().trim();
-            if (currentSelection.length > 0) {
-                console.log("Palabra recordada:", currentSelection);
-                guardarPalabra(currentSelection, userId, token);
-                removeButton(); // Eliminar el botón después de guardar
-            }
+            console.log("📌 Palabra recordada:", selectedText);
+            guardarPalabra(selectedText, userId, token);
         };
     } else {
-        removeButton(); // Si no hay texto seleccionado, eliminar el botón
+        removeButton();
     }
 }
 
 // Función para eliminar el botón si el usuario hace clic fuera
-function removeButtonIfOutside(event) {
-    if (button && !button.contains(event.target) && !window.getSelection().toString().trim()) {
+document.addEventListener("click", (event) => {
+    if (button && !button.contains(event.target) && window.getSelection().toString().trim() === "") {
         removeButton();
     }
-}
+});
 
 // Función para eliminar el botón de la página
 function removeButton() {
@@ -123,8 +124,10 @@ function guardarPalabra(palabra, userId, token) {
         if (data.palabra_traducida) {
             console.log(`✅ Palabra guardada: "${data.palabra_original}"`);
             console.log(`🔁 Traducción: "${data.palabra_traducida}"`);
-            alert(`Palabra guardada: ${data.palabra_original} - Traducción: ${data.palabra_traducida}`);
-            removeButton(); // Eliminar el botón después de guardar
+            
+            // Mostrar el mensaje en el alert con negrita simulada y salto de línea
+            alert("Haz aprendido una nueva palabra!\n\nIngles: " + data.palabra_original + " - Significado: " + data.palabra_traducida);
+            removeButton();
         } else {
             console.error("❌ Error al guardar la palabra en la API.");
         }
